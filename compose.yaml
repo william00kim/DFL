@@ -1,0 +1,12 @@
+services:
+  LLMserver:
+    container_name: LLM_server
+    image: langchain:1.0
+    working_dir: /work
+    gpus: all
+    volumes:
+      - ./:/work
+    ports:
+      - 8888:8888
+    stdin_open: true
+    tty: true
