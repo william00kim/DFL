@@ -3,7 +3,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain.memory import ConversationBufferMemory
 from langchain.schema import AIMessage
 
-model = OllamaLLM(model = "gemma3:27b")
+model = OllamaLLM(model = "exaone3.5:32b")
 
 memory = ConversationBufferMemory()
 

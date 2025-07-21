@@ -11,5 +11,3 @@ class chatting:
         
     def chatToOllama(self, chat):
         os.system(str(chat))
-    
-
