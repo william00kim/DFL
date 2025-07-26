@@ -1,7 +1,8 @@
+version: '3.0'
 services:
-  LLMserver:
-    container_name: LLM_server
-    image: langchain:1.0
+  llm_server:
+    container_name: llm_server
+    image: llm_server:1.0
     working_dir: /work
     gpus: all
     volumes:

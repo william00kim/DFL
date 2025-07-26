@@ -1,13 +1,20 @@
-.PHONY: start build
-
 start:
-	bash start.sh start
+	bash deploy.sh start
 
 build:
-	bash start.sh build
+	bash deploy.sh build
 
 stop:
-	bash start.sh stop
+	bash deploy.sh stop
 
-everything:
-	bash start.sh oneclickfin
+ollamastart:
+	bash deploy.sh start_ollama
+
+attach_ollama:
+	bash deploy.sh attach_ollama
+
+attach_llm:
+	bash deploy.sh attach_llm
+
+test:
+	bash deploy.sh test
