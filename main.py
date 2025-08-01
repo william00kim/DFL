@@ -1,27 +1,27 @@
-import model.Langchain as L
-import model.Langchain_memory as LM
+from fastapi import FastAPI
+from typing import Union
+import sys
+import os
 
-class Main:
-    # lang = L.Langchain("exaone3.5:32b")
+sys.path.append("/HDD1/rlawhdgus1212/work/DFL")
+from model import Langchain as LM
+from controller import RequestToAI as Req
 
-    # lang.setword("""
-    #              class project:
-    #             model = "abc"
+data = Req.RequestToAI
+model = Req.Model
+text = ""
+app = FastAPI()
 
-    #             def printData(self):
-    #                 return 'model'
-    #             """)
-    # print(lang.printllm())
-    # print(lang.getword())
-    # print(lang.LangchainStart())
+@app.post("/model/{model_name}")
+async def AIrequset_gemma(Data : data, model_name:model):
+    llm = LM.Langchain(model_name.value)
 
-    lang_mem = LM.Langchain_memory("exaone3.5:32b")
+    print(Data.prompt)
+    
+    model = llm.get_LLM_name()
 
-    question = ["안녕하세요", "오늘의 날씨는?", "한림대학교에 대해서 알려주세요"]
+    prompt = llm.create_prompt(Data.prompt)
 
-    for question in question:
-        result = lang_mem.LangchainMemoryStart.invoke(
-            {"input" : question}
-        )
-        print(result)
-        
+    res = llm.call_ollama(model, prompt)
+
+    return res
