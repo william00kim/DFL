@@ -9,4 +9,3 @@ class RequestToAI(BaseModel):
 class Model(str, Enum):
     gemma = "gemma"
     exaone = "exaone"
-

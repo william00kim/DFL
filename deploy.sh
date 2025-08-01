@@ -3,16 +3,16 @@
 build_DFL() {
     docker build -f Dockerfile -t "llm_server:1.0" ./
     docker compose -f compose.yaml up -d llm_server
-    docker exec -d llm_server ollama serve
+    docker exec -d llm_server bash -c "ollama serve"
     sleep 5
-    docker exec -it llm_server ollama pull gemma3:27b
-    docker exec -it llm_server ollama pull exaone3.5:32b
+    docker exec llm_server bash -c "ollama pull gemma3:27b"
+    docker exec llm_server bash -c "ollama pull exaone3.5:32b"
 }
 
 start_DFL() {
-    echo "Up DFL container"
-    docker exec -d llm_server bash "conda activate dockerforllm", "uvicorn main:app --reload --host 172.20.0.2 --port 8888"
-    # docker compose -f compose.yaml up -d llm_server
+    ContainerIP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "llm_server")
+    docker exec llm_server bash -c "source ~/miniconda3/bin/activate && conda activate dockerforllm && uvicorn main:app --reload --host=$ContainerIP --port=8888" 
+    docker exec -it llm_server bash
 }
 
 start_ollama_for_log() {
@@ -65,6 +65,7 @@ else
         start_DFL
         ;;
       *)
+      
         echo "Error: Unsupported command " $1  # print to stderr
         exit 1
         ;;

@@ -18,7 +18,6 @@ class Langchain:
             self.llm = "exaone3.5:32b"
     
     def get_LLM_name(self):
-
         return self.llm
 
     def create_prompt(self, userinput):
