@@ -11,7 +11,7 @@ AI의 프롬프트 예시:
 
 ## 서버 구조
 
-<img width="937" height="363" alt="image" src="https://github.com/user-attachments/assets/5cb6a07c-b3a8-48cf-9ff9-fb3d82cb3654" />
+<img width="1014" height="660" alt="image" src="https://github.com/user-attachments/assets/1a600efc-d05e-46dd-a277-8c6927f070ac" />
 
 ## 결과
 
